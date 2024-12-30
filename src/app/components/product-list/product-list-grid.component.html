@@ -4,12 +4,16 @@
             <div class="row">
 
                 <!--loop over the collection of products -->
-                <div *ngFor="let tempProduct of products " class="col-md-3">
-                    <td class="product-box">
-                        <img src="{{ tempProduct.imageUrl}}" height="50" />
+                <div *ngFor="let tempProduct of products" class="col-md-3">
+
+                    <div class="product-box">
+                        <img src="{{ tempProduct.imageUrl }}" class="img-responsive">
                         <h1>{{ tempProduct.name }}</h1>
-                        <div class="Price">{{ tempProduct.unitPrice | currency:'USD' }}</div>
-                        <a href='#' class="primary-btn">Add to cart</a>
+                        <div class="price">{{ tempProduct.unitPrice | currency:'USD' }}</div>
+                        <a href="#" class="primary-btn">Add to cart</a>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
