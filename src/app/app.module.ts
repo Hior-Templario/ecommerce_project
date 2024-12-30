@@ -8,14 +8,16 @@ import { ProductService } from './services/product.service';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ProductListComponent
+    
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+
+    AppComponent,
+    ProductListComponent
   ],
   providers: [ProductService],
-  bootstrap: [AppComponent]
+  //bootstrap: [AppComponent]
 })
 export class AppModule { }

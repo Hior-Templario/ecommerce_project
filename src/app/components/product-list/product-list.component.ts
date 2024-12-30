@@ -13,7 +13,8 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   //imports: [],
   //templateUrl: './product-list.component.html',
-  templateUrl: './product-list-table.component.html',
+  //templateUrl: './product-list-table.component.html',
+  templateUrl: './product-list-grid.component.html',
   styleUrls: ['./product-list.component.css']
 })
 
@@ -21,6 +22,7 @@ import { CommonModule } from '@angular/common';
 export class ProductListComponent implements OnInit{
 
   products: Product[] = [];
+tempProduct: any;
 
  constructor(private productService:ProductService) { }
 
