@@ -1,25 +1,25 @@
-import { bootstrapApplication } from '@angular/platform-browser';
-import { AppComponent } from './app/app.component';
-import { provideHttpClient } from '@angular/common/http';
-import { provideRouter, Routes } from '@angular/router';
-import { ProductListComponent } from './app/components/product-list/product-list.component';
+// Importa las funciones y módulos necesarios desde Angular
+import { bootstrapApplication } from '@angular/platform-browser'; // Para arrancar la aplicación en Angular
+import { AppComponent } from './app/app.component'; // Componente principal de la aplicación
+import { provideHttpClient } from '@angular/common/http'; // Proveedor para realizar peticiones HTTP
+import { provideRouter, Routes } from '@angular/router'; // Proveedores y tipado para gestionar rutas en Angular
+import { ProductListComponent } from './app/components/product-list/product-list.component'; // Componente que muestra la lista de productos
 
-// Definición de las rutas
+// Definición de las rutas de la aplicación
 const routes: Routes = [
-  {path: 'category/:id', component: ProductListComponent},
-  {path: 'category', component: ProductListComponent},
-  {path: 'products', component: ProductListComponent},
-  {path: '', redirectTo: '/products', pathMatch: 'full'},
-  {path: '**', redirectTo: '/products', pathMatch: 'full'}
+  { path: 'category/:id', component: ProductListComponent }, // Ruta dinámica que muestra productos de una categoría específica según su ID
+  { path: 'category', component: ProductListComponent }, // Ruta que muestra productos de una categoría general
+  { path: 'products', component: ProductListComponent }, // Ruta que muestra la lista de todos los productos
+  { path: '', redirectTo: '/products', pathMatch: 'full' }, // Ruta vacía (inicio), redirige automáticamente a '/products'
+  { path: '**', redirectTo: '/products', pathMatch: 'full' } // Ruta comodín, redirige a '/products' para rutas no definidas
 ];
 
-
-// Ahora arranca la aplicación con el componente standalone y las rutas definidas
+// Arranca la aplicación utilizando el componente principal (AppComponent)
+// y configura los proveedores necesarios
 bootstrapApplication(AppComponent, {
   providers: [
-    provideHttpClient(),
-    provideRouter(routes),  // Usar provideRouter para las rutas
-      
+    provideHttpClient(), // Proveedor para las peticiones HTTP
+    provideRouter(routes), // Proveedor para las rutas definidas anteriormente
   ]
 })
-  .catch(err => console.error(err));
+  .catch(err => console.error(err)); // Manejo de errores si la aplicación no puede arrancar
