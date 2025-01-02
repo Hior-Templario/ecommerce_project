@@ -7,18 +7,11 @@
         <img src="assets/images/logo.png" alt="luv2shop" class="img-responsive">
       </a>
     </div>
-    <div class="menu-sidebar-content js-scrollbar1">
-      <nav class="navbar-sidebar">
-        <ul class="list-unstyled navbar-list">
-          <li>
-            <a routerLink="/category/1" routerLinkActive="active-link">Books</a>
-          </li>
-          <li>
-            <a routerLink="/category/2" routerLinkActive="active-link">Coffee Mugs</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
+
+    <app-product-category-menu></app-product-category-menu>
+
+
+
   </aside>
   <!-- END MENU SIDEBAR-->
 
@@ -46,9 +39,9 @@
     </header>
     <!-- END HEADER DESKTOP-->
 
-    <!-- MAIN CONTENT-->   
-      <router-outlet></router-outlet>  <!-- Este es el lugar donde se renderizan las vistas --> 
-    
+    <!-- MAIN CONTENT-->
+    <router-outlet></router-outlet> <!-- Este es el lugar donde se renderizan las vistas -->
+
   </div>
 </div>
 
