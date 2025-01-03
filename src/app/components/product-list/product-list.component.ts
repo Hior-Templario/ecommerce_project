@@ -5,75 +5,61 @@ import { CommonModule } from '@angular/common'; // Importa el CommonModule, nece
 import { ActivatedRoute } from '@angular/router'; // Importa ActivatedRoute para poder acceder a los parámetros de la ruta.
 
 @Component({
-  selector: 'app-product-list', // Define el nombre del selector del componente, usado para incluir este componente en plantillas HTML.
+  selector: 'app-product-list', // Define el nombre del selector del componente.
   standalone: true, // Indica que el componente es autónomo y no depende de módulos adicionales.
-  imports: [CommonModule], // Declara los módulos necesarios para el componente. En este caso, CommonModule.
+  imports: [CommonModule], // Declara los módulos necesarios para el componente.
   templateUrl: './product-list-grid.component.html', // Define el archivo HTML que contiene la plantilla del componente.
   styleUrls: ['./product-list.component.css'] // Define el archivo CSS que contiene los estilos del componente.
 })
-export class ProductListComponent implements OnInit { // Define la clase del componente que implementa OnInit (interfaz que indica que se ejecuta cuando el componente se inicializa).
+export class ProductListComponent implements OnInit { // Define la clase del componente que implementa OnInit (se ejecuta cuando el componente se inicializa).
 
-  products: Product[] = []; // Crea un arreglo vacío para almacenar los productos que se recuperan de la API.
+  products: Product[] = []; // Arreglo vacío para almacenar los productos que se recuperan de la API.
   currentCategoryId: number = 1; // Define el ID de la categoría actual, por defecto 1.
-  searchMode: boolean = false;
+  searchMode: boolean = false; // Bandera que indica si estamos en modo búsqueda.
 
-  // El constructor recibe el servicio ProductService para manejar las peticiones de productos 
-  // y ActivatedRoute para acceder a los parámetros de la ruta.
-  constructor(private productService: ProductService, private route: ActivatedRoute) { }
+  constructor(private productService: ProductService, private route: ActivatedRoute) { } // Constructor para inyectar los servicios ProductService y ActivatedRoute.
 
-  // El método ngOnInit se ejecuta cuando el componente se inicializa.
-  ngOnInit() {
-    // Se suscribe a los cambios en los parámetros de la ruta para cargar los productos cada vez que cambien.
-    this.route.paramMap.subscribe(() => {
+  ngOnInit() { // El método ngOnInit se ejecuta cuando el componente se inicializa.
+    this.route.paramMap.subscribe(() => { // Se suscribe a los cambios en los parámetros de la ruta.
       this.listProducts(); // Llama al método para listar los productos cuando el parámetro cambia.
     });
   }
 
-  // Método para listar los productos según la categoría actual.
-  listProducts() {
+  listProducts() { // Método para listar los productos según la categoría actual o palabra clave de búsqueda.
+    this.searchMode = this.route.snapshot.paramMap.has('keyword'); // Establece si estamos en modo de búsqueda basado en la existencia del parámetro 'keyword'.
 
-    this.searchMode = this.route.snapshot.paramMap.has('keyword');
-
-    if(this.searchMode){
+    if(this.searchMode){ // Si estamos en modo de búsqueda, maneja la búsqueda de productos.
       this.handleSearchtProducs();
     }
-    else {
+    else { // Si no estamos en modo de búsqueda, maneja la lista de productos por categoría.
       this.handleListProducs();
     }
-
-   
   }
-  handleSearchtProducs() {
 
-    const theKeyword: string = this.route.snapshot.paramMap.get('keyword')!; 
+  handleSearchtProducs() { // Método para manejar la búsqueda de productos según el 'keyword'.
+    const theKeyword: string = this.route.snapshot.paramMap.get('keyword')!; // Obtiene el valor de 'keyword' de los parámetros de la ruta.
 
-    this.productService.searchProducts(theKeyword).subscribe(
+    this.productService.searchProducts(theKeyword).subscribe( // Llama al servicio ProductService para buscar productos que coincidan con el 'keyword'.
       data => {
-        this.products = data;
+        this.products = data; // Asigna los productos encontrados a la propiedad 'products'.
       }
-    )
+    );
   }
 
-  handleListProducs(){
+  handleListProducs() { // Método para manejar la lista de productos basados en la categoría seleccionada.
+    const hasCategoryId: boolean = this.route.snapshot.paramMap.has('id'); // Comprueba si el parámetro 'id' está disponible en la ruta.
 
-     // Comprueba si el parámetro "id" está disponible en la ruta.
-     const hasCategoryId: boolean = this.route.snapshot.paramMap.has('id');
+    if (hasCategoryId) { // Si existe 'id', lo obtiene y lo convierte a número.
+      this.currentCategoryId = +this.route.snapshot.paramMap.get('id')!;
+    }
+    else { // Si no hay 'id', se asigna el valor por defecto 1.
+      this.currentCategoryId = 1;
+    }
 
-     if (hasCategoryId) {
-       // Si existe un "id" en los parámetros de la ruta, se obtiene el valor y se convierte a número.
-       this.currentCategoryId = +this.route.snapshot.paramMap.get('id')!;
-     }
-     else {
-       // Si no hay "id" en los parámetros, se asigna el valor por defecto 1.
-       this.currentCategoryId = 1;
-     }
- 
-     // Llama al servicio para obtener la lista de productos para la categoría actual.
-     this.productService.getProductList(this.currentCategoryId).subscribe(
-       data => {
-         this.products = data; // Asigna los datos recibidos de la API al arreglo de productos.
-       },
-       
-     )
+    this.productService.getProductList(this.currentCategoryId).subscribe( // Llama al servicio ProductService para obtener los productos de la categoría.
+      data => {
+        this.products = data; // Asigna los productos recibidos a la propiedad 'products'.
+      }
+    );
   }
 }

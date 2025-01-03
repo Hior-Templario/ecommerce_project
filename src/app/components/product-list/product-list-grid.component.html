@@ -1,19 +1,27 @@
-<div class="main-content ">
-    <div class="section-content section-content-p30">
-        <div class="container-fluid">
-            <div class="row">
+<div class="main-content">  <!-- Contenedor principal del contenido -->
+    
+    <div class="section-content section-content-p30">  <!-- Sección de contenido con espaciado personalizado -->
+        
+        <div class="container-fluid">  <!-- Contenedor fluido que permite un diseño adaptable -->
+            
+            <div class="row">  <!-- Fila para organizar elementos en columnas -->
 
-                <!--loop over the collection of products -->
-                <div *ngFor="let tempProduct of products" class="col-md-3">
+                <div *ngFor="let tempProduct of products" class="col-md-3">  <!-- Bucle Angular para iterar sobre la colección de productos, cada producto se mostrará como una columna con un ancho de 3 columnas (en una cuadrícula de 12) -->
 
-                    <div class="product-box">
-                        <img src="{{ tempProduct.imageUrl }}" class="img-responsive">
-                        <h1>{{ tempProduct.name }}</h1>
-                        <div class="price">{{ tempProduct.unitPrice | currency:'USD' }}</div>
-                        <a href="#" class="primary-btn">Add to cart</a>
+                    <div class="product-box">  <!-- Caja para mostrar la información del producto -->
+                        
+                        <img src="{{ tempProduct.imageUrl }}" class="img-responsive">  <!-- Imagen del producto -->
+                        
+                        <h1>{{ tempProduct.name }}</h1>  <!-- Nombre del producto -->
+                        
+                        <div class="price">{{ tempProduct.unitPrice | currency:'USD' }}</div>  <!-- Precio del producto, formateado como moneda en USD -->
+                        
+                        <a href="#" class="primary-btn">Add to cart</a>  <!-- Botón para agregar el producto al carrito -->
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
 </div>
+

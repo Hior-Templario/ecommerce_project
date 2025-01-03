@@ -1,14 +1,15 @@
-<div class="menu-sidebar-content js-scrollbar1">
-    <nav class="navbar-sidebar">
-        <ul class="list-unstyled navbar-list">
+<div class="menu-sidebar-content js-scrollbar1">  <!-- Contenedor principal que define el área del contenido del menú lateral -->
+    
+    <nav class="navbar-sidebar">  <!-- Barra de navegación dentro del menú lateral -->
+        
+        <ul class="list-unstyled navbar-list">  <!-- Lista desordenada que contiene los elementos del menú -->
 
-            <li *ngFor="let tempProductCategory of productCategories">
-
-                <a routerLink="/category/{{ tempProductCategory.id }}" routerLinkActive="active-link">
-                    {{ tempProductCategory.categoryName }}
+            <li *ngFor="let tempProductCategory of productCategories">  <!-- Directiva Angular *ngFor para iterar sobre la lista de categorías de productos -->
+                
+                <a routerLink="/category/{{ tempProductCategory.id }}" routerLinkActive="active-link">  <!-- Enlace dinámico que redirige a la página de la categoría específica -->
+                    {{ tempProductCategory.categoryName }}  <!-- Nombre de la categoría mostrado como texto del enlace -->
                 </a>
             </li>
         </ul>
     </nav>
 </div>
-

@@ -1,13 +1,14 @@
+<!-- Contenedor de la barra de búsqueda -->
 <div class="form-header">
-    <!-- Asegúrate de usar el mismo nombre de referencia en ambos lugares -->
-    <input #myInput type="text"    
-      placeholder="Search for products ..." 
-      class="au-input au-input-xl"
-      (keyup.enter)="doSearch(myInput.value)"/>
-  
-    <button (click)="doSearch(myInput.value)" class="au-btn-submit" >
-      Search
-    </button>
-  </div>
-            
 
+  <!-- Campo de entrada de texto para la búsqueda de productos -->
+  <input #myInput type="text" 
+         placeholder="Search for products ..." 
+         class="au-input au-input-xl" 
+         (keyup.enter)="doSearch(myInput.value)" />
+
+  <!-- Botón de búsqueda que ejecuta la búsqueda al hacer clic -->
+  <button (click)="doSearch(myInput.value)" class="au-btn-submit">
+    Search
+  </button>
+</div>
