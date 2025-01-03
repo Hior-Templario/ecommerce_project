@@ -6,6 +6,7 @@ import { ProductListComponent } from './app/components/product-list/product-list
 
 // Definición de las rutas
 const routes: Routes = [
+  {path: 'search/:keyword', component: ProductListComponent},
   {path: 'category/:id', component: ProductListComponent},
   {path: 'category', component: ProductListComponent},
   {path: 'products', component: ProductListComponent},

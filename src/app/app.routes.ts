@@ -6,6 +6,9 @@ import { ProductListComponent } from './components/product-list/product-list.com
 
 // Definición de las rutas para la aplicación.
 export const routes: Routes = [
+
+    {path: 'search/:keyword', component: ProductListComponent},
+
     // Ruta para categorías específicas. El parámetro dinámico `id` representa el identificador de una categoría.
     { path: 'category/:id', component: ProductListComponent },
 

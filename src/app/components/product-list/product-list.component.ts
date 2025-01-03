@@ -15,6 +15,7 @@ export class ProductListComponent implements OnInit { // Define la clase del com
 
   products: Product[] = []; // Crea un arreglo vacío para almacenar los productos que se recuperan de la API.
   currentCategoryId: number = 1; // Define el ID de la categoría actual, por defecto 1.
+  searchMode: boolean = false;
 
   // El constructor recibe el servicio ProductService para manejar las peticiones de productos 
   // y ActivatedRoute para acceder a los parámetros de la ruta.
@@ -31,24 +32,48 @@ export class ProductListComponent implements OnInit { // Define la clase del com
   // Método para listar los productos según la categoría actual.
   listProducts() {
 
-    // Comprueba si el parámetro "id" está disponible en la ruta.
-    const hasCategoryId: boolean = this.route.snapshot.paramMap.has('id');
+    this.searchMode = this.route.snapshot.paramMap.has('keyword');
 
-    if (hasCategoryId) {
-      // Si existe un "id" en los parámetros de la ruta, se obtiene el valor y se convierte a número.
-      this.currentCategoryId = +this.route.snapshot.paramMap.get('id')!;
+    if(this.searchMode){
+      this.handleSearchtProducs();
     }
     else {
-      // Si no hay "id" en los parámetros, se asigna el valor por defecto 1.
-      this.currentCategoryId = 1;
+      this.handleListProducs();
     }
 
-    // Llama al servicio para obtener la lista de productos para la categoría actual.
-    this.productService.getProductList(this.currentCategoryId).subscribe(
+   
+  }
+  handleSearchtProducs() {
+
+    const theKeyword: string = this.route.snapshot.paramMap.get('keyword')!; 
+
+    this.productService.searchProducts(theKeyword).subscribe(
       data => {
-        this.products = data; // Asigna los datos recibidos de la API al arreglo de productos.
-      },
-      
+        this.products = data;
+      }
     )
+  }
+
+  handleListProducs(){
+
+     // Comprueba si el parámetro "id" está disponible en la ruta.
+     const hasCategoryId: boolean = this.route.snapshot.paramMap.has('id');
+
+     if (hasCategoryId) {
+       // Si existe un "id" en los parámetros de la ruta, se obtiene el valor y se convierte a número.
+       this.currentCategoryId = +this.route.snapshot.paramMap.get('id')!;
+     }
+     else {
+       // Si no hay "id" en los parámetros, se asigna el valor por defecto 1.
+       this.currentCategoryId = 1;
+     }
+ 
+     // Llama al servicio para obtener la lista de productos para la categoría actual.
+     this.productService.getProductList(this.currentCategoryId).subscribe(
+       data => {
+         this.products = data; // Asigna los datos recibidos de la API al arreglo de productos.
+       },
+       
+     )
   }
 }
