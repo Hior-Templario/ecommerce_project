@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core'; // Importa los módulos neces
 import { Product } from '../../common/product'; // Importa la clase Product desde el archivo correspondiente.
 import { ProductService } from '../../services/product.service'; // Importa el servicio ProductService que manejará las peticiones de productos.
 import { CommonModule } from '@angular/common'; // Importa el CommonModule, necesario para usar directivas comunes como ngIf o ngFor.
-import { ActivatedRoute } from '@angular/router'; // Importa ActivatedRoute para poder acceder a los parámetros de la ruta.
+import { ActivatedRoute, RouterModule } from '@angular/router'; // Importa ActivatedRoute para poder acceder a los parámetros de la ruta.
 
 @Component({
   selector: 'app-product-list', // Define el nombre del selector del componente.
   standalone: true, // Indica que el componente es autónomo y no depende de módulos adicionales.
-  imports: [CommonModule], // Declara los módulos necesarios para el componente.
+  imports: [CommonModule, RouterModule], // Declara los módulos necesarios para el componente.
   templateUrl: './product-list-grid.component.html', // Define el archivo HTML que contiene la plantilla del componente.
   styleUrls: ['./product-list.component.css'] // Define el archivo CSS que contiene los estilos del componente.
 })
@@ -16,6 +16,7 @@ export class ProductListComponent implements OnInit { // Define la clase del com
   products: Product[] = []; // Arreglo vacío para almacenar los productos que se recuperan de la API.
   currentCategoryId: number = 1; // Define el ID de la categoría actual, por defecto 1.
   searchMode: boolean = false; // Bandera que indica si estamos en modo búsqueda.
+tempProductCategory: any;
 
   constructor(private productService: ProductService, private route: ActivatedRoute) { } // Constructor para inyectar los servicios ProductService y ActivatedRoute.
 

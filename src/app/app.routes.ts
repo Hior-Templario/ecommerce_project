@@ -3,9 +3,12 @@ import { Routes } from '@angular/router';
 
 // Importación del componente `ProductListComponent`, que se usará en varias rutas.
 import { ProductListComponent } from './components/product-list/product-list.component';  
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
 // Definición de las rutas para la aplicación.
 export const routes: Routes = [  
+
+     {path: 'products/:id', component: ProductDetailsComponent},
 
     // Ruta para buscar productos por palabra clave. El parámetro `keyword` se captura en la ruta.
     {path: 'search/:keyword', component: ProductListComponent}, 

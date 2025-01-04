@@ -10,16 +10,23 @@
 
                     <div class="product-box">  <!-- Caja para mostrar la información del producto -->
                         
-                        <img src="{{ tempProduct.imageUrl }}" class="img-responsive">  <!-- Imagen del producto -->
-                        
-                        <h1>{{ tempProduct.name }}</h1>  <!-- Nombre del producto -->
-                        
+                       <a routerLink="/products/{{ tempProduct.id }}">
+                           <img src="{{ tempProduct.imageUrl }}" class="img-responsive">  <!-- Imagen del producto -->
+                       </a>
+                                     
+                       <a routerLink="/products/{{ tempProduct.id }}">
+                        <h1>{{ tempProduct.name }}</h1>  <!-- Nombre del producto -->     
+                       </a>
+                       
                         <div class="price">{{ tempProduct.unitPrice | currency:'USD' }}</div>  <!-- Precio del producto, formateado como moneda en USD -->
                         
                         <a href="#" class="primary-btn">Add to cart</a>  <!-- Botón para agregar el producto al carrito -->
                     </div>
                 </div>
 
+                <!-- if products empty then display a message-->
+                <div *ngIf="products?.length == 0" class="alert alert-warning col-md-12" role="alert">
+                    No products found.
             </div>
         </div>
     </div>

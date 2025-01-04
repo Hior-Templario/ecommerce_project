@@ -127,6 +127,10 @@ aside.menu-sidebar.d-none.d-lg-block.clr{
     box-shadow:-2px 0 4px #0000003b
 }
 
+.navbar-sidebar .navbar-list li a {
+    text-decoration: none;
+}
+
 /* 
  * ----------------------------
  * Header Desktop Section
@@ -368,7 +372,7 @@ input.au-input.au-input-xl{
 
 .navbar-sidebar .navbar-list li a{
     display:block;
-    color:#555;
+    color:#555555;
     font-size:16px;
     padding:5px 0
 }
@@ -380,6 +384,8 @@ input.au-input.au-input-xl{
 .navbar-sidebar .navbar-list li a:hover{
     color:#0da8e4
 }
+
+
 
 /* 
  * ----------------------------
@@ -552,6 +558,16 @@ input.au-input.au-input-xl{
     padding-top:12px;
     margin-bottom:7px
 }
+
+.product-box a {
+    text-decoration: none; /* Elimina subrayado azul */
+    color: inherit; /* Hereda el color del contenedor */
+}
+
+.product-box a:hover {
+    text-decoration: none; /* No subrayado al pasar el mouse */
+    color: #007bff; /* Color azul en hover */
+}
 .product-box h2{
     font-size:15px;
     padding-bottom:0;
@@ -722,6 +738,11 @@ table.table.table-bordered th{
 .detail-section{
     margin-top:60px
 }
+
+.detail-img{
+    width: 30%;
+}
+
 /**/
 
 /* 

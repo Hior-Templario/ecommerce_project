@@ -10,6 +10,11 @@ import { ProductCategory } from '../common/product-category';  // Importa la cla
 })
 export class ProductService {
 
+  getProduct(theProductId: number): Observable<Product> {
+    const productUrl = `${this.baseUrl}/${theProductId}`;
+    return this.httpClient.get<Product>(productUrl);
+  }
+
   private baseUrl = 'http://localhost:8080/api/products';  // Define la URL base para acceder a los productos.
   private categoryUrl = 'http://localhost:8080/api/product-category';  // Define la URL para acceder a las categorías de productos.
 
