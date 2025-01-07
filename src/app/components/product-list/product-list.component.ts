@@ -4,6 +4,8 @@ import { ProductService } from '../../services/product.service'; // Servicio par
 import { CommonModule } from '@angular/common'; // Módulo necesario para usar directivas comunes como *ngIf y *ngFor.
 import { ActivatedRoute, RouterModule } from '@angular/router'; // Permite acceder a parámetros en la URL y navegar entre rutas.
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap'; // Módulo para implementar la paginación de Bootstrap en Angular.
+import { CartItem } from '../../common/cart-item';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product-list', // Define el selector HTML para este componente.
@@ -26,7 +28,9 @@ export class ProductListComponent implements OnInit { // Clase principal del com
 
   previousKeyword: string = ""; // Almacena la última palabra clave de búsqueda para evitar búsquedas repetidas.
 
-  constructor(private productService: ProductService, private route: ActivatedRoute) { } 
+  constructor(private productService: ProductService, 
+              private cartService: CartService,
+              private route: ActivatedRoute) { } 
   // Constructor del componente, inyecta dependencias:
   // - `ProductService`: Servicio que interactúa con la API para obtener productos.
   // - `ActivatedRoute`: Permite acceder a los parámetros de la ruta actual.
@@ -115,7 +119,6 @@ export class ProductListComponent implements OnInit { // Clase principal del com
     this.thePageNumber = 1; // Reinicia a la primera página.
     this.listProducts(); // Actualiza la lista de productos.
   }
-
   processResult() { 
     // Procesa los datos obtenidos de la API y los asigna a las variables del componente.
     return (data: any) => {
@@ -124,5 +127,15 @@ export class ProductListComponent implements OnInit { // Clase principal del com
       this.thePageSize = data.page.size; // Actualiza el tamaño de la página.
       this.theTotalElements = data.page.totalElements; // Total de productos disponibles.
     };
+  }
+
+  addToCart(theProduct: Product){
+
+    console.log(`Adding to cart: ${theProduct.name},${theProduct.unitPrice}`)
+
+    const theCartItem = new CartItem(theProduct);
+
+    this.cartService.addToCart(theCartItem);
+
   }
 }
