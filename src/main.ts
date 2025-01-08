@@ -6,9 +6,12 @@ import { ProductListComponent } from './app/components/product-list/product-list
 import { ProductDetailsComponent } from './app/components/product-details/product-details.component'; // Componente de detalles del producto.
 import { importProvidersFrom } from '@angular/core'; // Función para importar proveedores de un módulo Angular.
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; // Módulo de Bootstrap para Angular.
+import { CartDetailsComponent } from './app/components/cart-details/cart-details.component';
 
 // Definición de las rutas
 const routes: Routes = [
+  
+  { path: 'cart-details', component: CartDetailsComponent }, // Ruta para los detalles del carrito.
   { path: 'products/:id', component: ProductDetailsComponent }, // Ruta para los detalles del producto.
   { path: 'search/:keyword', component: ProductListComponent }, // Ruta para la búsqueda de productos.
   { path: 'category/:id', component: ProductListComponent }, // Ruta para una categoría específica.

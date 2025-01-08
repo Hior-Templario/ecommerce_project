@@ -4,11 +4,15 @@ import { Routes } from '@angular/router';
 // Importación del componente `ProductListComponent`, que se usará en varias rutas para mostrar listas de productos.
 import { ProductListComponent } from './components/product-list/product-list.component';  
 import { ProductDetailsComponent } from './components/product-details/product-details.component';  // Importación del componente para mostrar los detalles de un producto.
+import { CartDetailsComponent } from './components/cart-details/cart-details.component';
 
 
 // Definición de las rutas para la aplicación.
 export const routes: Routes = [  
 
+    // Ruta para mostrar los detalles del carrito de compras.
+    { path: 'cart-details', component: CartDetailsComponent },
+    
     // Ruta para mostrar los detalles de un producto, con el ID del producto como parámetro de la URL.
     {path: 'products/:id', component: ProductDetailsComponent},  
 
