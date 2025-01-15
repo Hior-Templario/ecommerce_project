@@ -1,0 +1,163 @@
+<div class="main-content page-m"> 
+    <div class="section-content section-content-p30">
+        <div class="container-fluid">
+
+            <!-- Formulario principal con el grupo de controles reactivos -->
+            <form [formGroup]="checkoutFormGroup" (ngSubmit)="onSubmit()">
+
+                <!-- Grupo de formulario: Información del cliente -->
+                <div formGroupName="customer" class="form-area">
+                    <h3>Customer</h3>
+
+                    <!-- Campo: Nombre -->
+                    <div class="row">
+                        <div class="col-md-2"> <label>First Name</label></div>
+                        <div class="col-md-9">
+                            <div class="input-space">
+                                <input formControlName="firstName" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Campo: Apellido -->
+                    <div class="row">
+                        <div class="col-md-2"> <label>Last Name</label></div>
+                        <div class="col-md-9">
+                            <div class="input-space">
+                                <input formControlName="lastName" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Campo: Correo electrónico -->
+                    <div class="row">
+                        <div class="col-md-2"> <label>Email</label></div>
+                        <div class="col-md-9">
+                            <div class="input-space">
+                                <input formControlName="email" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Grupo de formulario: Dirección de envío -->
+                <div formGroupName="shippingAddress" class="form-area">
+                    <h3>Shipping Address</h3>
+
+                    <!-- Campo: País -->
+                    <div class="row">
+                        <div class="col-md-2"> <label>Country</label></div>
+                        <div class="col-md-9">
+                            <div class="input-space">
+                                <select formControlName="country" (change)="getStates('shippingAddress')">
+                                    <option *ngFor="let country of countries"[ngValue]="country">
+                                        {{ country.name }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Campo: Calle -->
+                    <div class="row">
+                        <div class="col-md-2"> <label>Street</label></div>
+                        <div class="col-md-9">
+                            <div class="input-space">
+                                <input formControlName="street" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Campo: Ciudad -->
+                    <div class="row">
+                        <div class="col-md-2"> <label>City</label></div>
+                        <div class="col-md-9">
+                            <div class="input-space">
+                                <input formControlName="city" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Campo: Estado -->
+                    <div class="row">
+                        <div class="col-md-2"> <label>State</label></div>
+                        <div class="col-md-9">
+                            <div class="input-space">
+                                <select formControlName="state">
+                                    <option *ngFor="let state of shippingAddressStates" [ngValue]="state">
+                                        {{ state.name }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Campo: Código postal -->
+                    <div class="row">
+                        <div class="col-md-2"> <label>ZipCode</label></div>
+                        <div class="col-md-9">
+                            <div class="input-space">
+                                <input formControlName="zipCode" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Checkbox para copiar dirección de envío a dirección de facturación -->
+                <div class="input-space">
+                    <label class="au-checkbox">
+                        <input type="checkbox" (change)="copyShippingAddressToBillingAddgress($event)">
+                        <span class="au-checkmark"></span>Billing Address same as Shipping Address
+                    </label>
+                </div>
+
+                <!-- Grupo de formulario: Dirección de facturación -->
+                <div formGroupName="billingAddress" class="form-area">
+                    <h3>Billing Address</h3>
+                    
+                    <!-- Similar a Shipping Address con sus propios estados y países -->
+                    <!-- Se omite detalle porque es equivalente -->
+
+                </div>
+
+                <!-- Grupo de formulario: Información de tarjeta de crédito -->
+                <div formGroupName="creditCard" class="form-area">
+                    <h3>Credit Card</h3>
+                    
+                    <!-- Selección de tipo de tarjeta -->
+                    <div class="row">
+                        <div class="col-md-2"> <label>Card Type</label></div>
+                        <div class="col-md-9">
+                            <div class="input-space">
+                                <select formControlName="cardType">
+                                    <option>Visa</option>
+                                    <option>Master Card</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Campos adicionales: Nombre en tarjeta, número, código de seguridad, mes y año de expiración -->
+                    <!-- Se omite detalle porque es repetitivo -->
+
+                </div>
+
+                <!-- Detalles del pedido -->
+                <div class="form-area">
+                    <h3>Review your order</h3>
+                    <p>Total quantity: {{ totalQuantity }}</p>
+                    <p>Shipping: FREE </p>
+                    <p>Total price: {{ totalPrice | currency: 'USD' }}</p>
+                </div>
+
+                <!-- Botón para enviar el formulario -->
+                <div class="text-center">
+                    <button type="submit" class="btn btn-info">Purchase</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

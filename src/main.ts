@@ -7,10 +7,13 @@ import { ProductDetailsComponent } from './app/components/product-details/produc
 import { importProvidersFrom } from '@angular/core'; // Función para importar proveedores de un módulo Angular.
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; // Módulo de Bootstrap para Angular.
 import { CartDetailsComponent } from './app/components/cart-details/cart-details.component';
+import { CheckoutComponent } from './app/components/checkout/checkout.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // Definición de las rutas
 const routes: Routes = [
   
+  { path: 'checkout', component: CheckoutComponent },// Ruta para la página de checkout.
   { path: 'cart-details', component: CartDetailsComponent }, // Ruta para los detalles del carrito.
   { path: 'products/:id', component: ProductDetailsComponent }, // Ruta para los detalles del producto.
   { path: 'search/:keyword', component: ProductListComponent }, // Ruta para la búsqueda de productos.
@@ -23,9 +26,12 @@ const routes: Routes = [
 
 // Arranca la aplicación con el componente standalone y las configuraciones necesarias.
 bootstrapApplication(AppComponent, {
+
+  
   providers: [
     provideHttpClient(), // Proveedor para el cliente HTTP.
     provideRouter(routes), // Proveedor para las rutas definidas.
+    importProvidersFrom(ReactiveFormsModule), // Importa los proveedores del módulo para formularios reactivos.
     importProvidersFrom(NgbModule) // Importa los proveedores del módulo NgbModule.
   ]
 })

@@ -5,10 +5,14 @@ import { Routes } from '@angular/router';
 import { ProductListComponent } from './components/product-list/product-list.component';  
 import { ProductDetailsComponent } from './components/product-details/product-details.component';  // Importación del componente para mostrar los detalles de un producto.
 import { CartDetailsComponent } from './components/cart-details/cart-details.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 
 // Definición de las rutas para la aplicación.
 export const routes: Routes = [  
+
+    // Ruta para el componente de checkout (pago)
+    { path: 'checkout', component: CheckoutComponent },
 
     // Ruta para mostrar los detalles del carrito de compras.
     { path: 'cart-details', component: CartDetailsComponent },
