@@ -1,6 +1,6 @@
 <div class="page-wrapper">
 
-  <!-- MENU SIDEBAR-->
+  <!-- MENÚ LATERAL (SIDEBAR)-->
   <aside class="menu-sidebar d-none d-lg-block">
     <div class="logo">
       <a routerLink="/products">
@@ -8,20 +8,23 @@
       </a>
     </div>
 
+    <!-- Componente para mostrar el menú de categorías de productos -->
     <app-product-category-menu></app-product-category-menu>
 
   </aside>
-  <!-- END MENU SIDEBAR-->
+  <!-- FIN DEL MENÚ LATERAL (SIDEBAR)-->
 
   <div class="page-container">
-    <!-- HEADER DESKTOP-->
+    <!-- ENCABEZADO (HEADER) DEL ESCRITORIO-->
     <header class="header-desktop">
       <div class="section-content section-content-p30">
         <div class="container-fluid">
           <div class="header-wrap">
 
+            <!-- Componente de búsqueda de productos -->
             <app-search></app-search>
 
+            <!-- Componente de estado del carrito de compras -->
             <app-cart-status></app-cart-status>
 
           </div>
@@ -29,20 +32,21 @@
         </div>
       </div>
     </header>
-    <!-- END HEADER DESKTOP-->
+    <!-- FIN DEL ENCABEZADO (HEADER) DEL ESCRITORIO-->
 
-    <!-- MAIN CONTENT-->
-    <router-outlet></router-outlet> <!-- Este es el lugar donde se renderizan las vistas -->
+    <!-- CONTENIDO PRINCIPAL-->
+    <!-- Este es el lugar donde se renderizan las vistas dependiendo de la ruta -->
+    <router-outlet></router-outlet>
 
   </div>
 </div>
 
-<!-- END PAGE CONTAINER-->
+<!-- FIN DEL CONTENEDOR DE LA PÁGINA-->
 
 <footer>
   <ul>
-    <li><a href="#">About Us</a></li>
-    <li><a href="#">Contact Us</a></li>
-    <li><a href="#">Help</a></li>
+    <li><a href="#">About Us</a></li>  <!-- Enlace a la sección 'Acerca de nosotros' -->
+    <li><a href="#">Contact Us</a></li>  <!-- Enlace a la sección 'Contáctanos' -->
+    <li><a href="#">Help</a></li>  <!-- Enlace a la sección de 'Ayuda' -->
   </ul>
 </footer>
