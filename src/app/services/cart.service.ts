@@ -1,6 +1,6 @@
 // Importaciones necesarias para el servicio
 import { Injectable } from '@angular/core'; // Decorador que indica que esta clase es inyectable como un servicio
-import { Subject } from 'rxjs'; // Clase de RxJS que permite manejar eventos y comunicación reactiva
+import { BehaviorSubject, ReplaySubject, Subject } from 'rxjs'; // Clase de RxJS que permite manejar eventos y comunicación reactiva
 import { CartItem } from '../common/cart-item'; // Modelo que representa un elemento del carrito
 
 // Decorador que define este servicio como inyectable y accesible en toda la aplicación
@@ -13,8 +13,8 @@ export class CartService {
   cartItems: CartItem[] = [];
 
   // Subjects para manejar la transmisión de los valores totales del precio y la cantidad
-  totalPrice: Subject<number> = new Subject<number>();
-  totalQuantity: Subject<number> = new Subject<number>();
+  totalPrice: Subject<number> = new BehaviorSubject<number>(0);
+  totalQuantity: Subject<number> = new BehaviorSubject<number>(0);
 
   constructor() { } // Constructor vacío, ya que no se necesitan dependencias en este caso
 
