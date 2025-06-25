@@ -1,0 +1,52 @@
+<div class="page-wrapper">
+
+  <!-- MENÚ LATERAL (SIDEBAR)-->
+  <aside class="menu-sidebar d-none d-lg-block">
+    <div class="logo">
+      <a routerLink="/products">
+        <img src="assets/images/logo.png" alt="luv2shop" class="img-responsive">
+      </a>
+    </div>
+
+    <!-- Componente para mostrar el menú de categorías de productos -->
+    <app-product-category-menu></app-product-category-menu>
+
+  </aside>
+  <!-- FIN DEL MENÚ LATERAL (SIDEBAR)-->
+
+  <div class="page-container">
+    <!-- ENCABEZADO (HEADER) DEL ESCRITORIO-->
+    <header class="header-desktop">
+      <div class="section-content section-content-p30">
+        <div class="container-fluid">
+          <div class="header-wrap">
+
+            <!-- Componente de búsqueda de productos -->
+            <app-search></app-search>
+
+            <!-- Componente de estado del carrito de compras -->
+            <app-cart-status></app-cart-status>
+
+          </div>
+          <div class="account-wrap"></div>
+        </div>
+      </div>
+    </header>
+    <!-- FIN DEL ENCABEZADO (HEADER) DEL ESCRITORIO-->
+
+    <!-- CONTENIDO PRINCIPAL-->
+    <!-- Este es el lugar donde se renderizan las vistas dependiendo de la ruta -->
+    <router-outlet></router-outlet>
+
+  </div>
+</div>
+
+<!-- FIN DEL CONTENEDOR DE LA PÁGINA-->
+
+<footer>
+  <ul>
+    <li><a href="#">About Us</a></li>  <!-- Enlace a la sección 'Acerca de nosotros' -->
+    <li><a href="#">Contact Us</a></li>  <!-- Enlace a la sección 'Contáctanos' -->
+    <li><a href="#">Help</a></li>  <!-- Enlace a la sección de 'Ayuda' -->
+  </ul>
+</footer>

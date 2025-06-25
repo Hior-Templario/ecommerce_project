@@ -1,0 +1,29 @@
+
+<!-- Sección de detalles del producto que se muestra solo si existe el producto (usando la directiva *ngIf) -->
+<div class="detail-section" *ngIf="product">
+    <div class="container-fluid">
+        <!-- Imagen del producto con el enlace especificado en product.imageUrl -->
+        <img src="{{ product.imageUrl }}" class="detail-img">
+
+        <!-- Nombre del producto -->
+        <h3>{{ product.name }}</h3>
+
+        <!-- Precio del producto, formateado como moneda en USD -->
+        <div class="price">{{ product.unitPrice | currency: 'USD' }}</div>
+
+        <!-- Botón para añadir el producto al carrito de compras -->
+        <button (click)="addToCart()" class="btn btn-primary btn.sm">Add to cart</button>
+
+        <!-- Línea horizontal para separar secciones -->
+        <hr>
+
+        <!-- Descripción del producto -->
+        <h4>Description</h4>
+        <p>{{ product.description }}</p>
+
+        <!-- Enlace para regresar a la lista de productos -->
+        <a routerLink="/products" class="mt-5">Back to Product List</a>
+    </div>
+</div>
+
+

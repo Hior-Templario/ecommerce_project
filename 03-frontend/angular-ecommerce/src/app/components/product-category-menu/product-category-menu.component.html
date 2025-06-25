@@ -1,0 +1,23 @@
+<!-- Contenedor para el contenido del menú lateral con soporte para barra de desplazamiento -->
+<div class="menu-sidebar-content js-scrollbar1"> 
+    
+    <!-- Elemento de navegación para el menú lateral -->
+    <nav class="navbar-sidebar">  
+        
+        <!-- Lista desordenada que contiene los enlaces de las categorías de productos -->
+        <ul class="list-unstyled navbar-list">  
+
+            <!-- Se utiliza *ngFor para iterar sobre la lista de categorías de productos (productCategories) -->
+            <li *ngFor="let tempProductCategory of productCategories">  
+                
+                <!-- Enlace dinámico que navega a la página de la categoría específica -->
+                <!-- 'routerLink' construye la URL usando el id de la categoría -->
+                <!-- 'routerLinkActive' agrega una clase cuando el enlace está activo -->
+                <a routerLink="/category/{{ tempProductCategory.id }}" routerLinkActive="active-link"> 
+                    <!-- Nombre de la categoría que se muestra como texto del enlace -->
+                    {{ tempProductCategory.categoryName }} 
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>

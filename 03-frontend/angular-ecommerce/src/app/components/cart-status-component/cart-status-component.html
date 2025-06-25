@@ -1,0 +1,15 @@
+<div class="cart-area d-n">
+  <!-- Contenedor para el área del carrito, con clase específica para el diseño -->
+  <a routerLink="/cart-details">
+      <!-- Enlace de navegación que redirige a la página de detalles del carrito -->
+      <div class="total">
+          <!-- Contenedor que muestra el precio total y la cantidad total -->
+          {{ totalPrice | currency: 'USD' }} 
+          <!-- Muestra el precio total formateado como moneda en USD -->
+          <span>{{ totalQuantity }}</span> 
+          <!-- Muestra la cantidad total de productos en el carrito -->
+      </div>
+      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+      <!-- Icono de carrito de compras utilizando Font Awesome -->
+  </a>
+</div>
